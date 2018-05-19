@@ -2,14 +2,13 @@
   <div id="app">
     <h1>Witaj w systemie do zapisów na zajęcia</h1>
     
-    <div v-if="!isAuthenticated">
-      <label>Zaloguj się emailem</label>
-      <input type="email" v-model="email">
-      <button @click="logIn()">Wchodzę</button>
+    <div v-if="!authenticatedEmail">
+      <login-form @login="logMeIn($event)"
+      :button-label="'Wchodzę'"></login-form>
     </div>
 
     <div v-else>
-      <h2>Witaj {{ email }}!</h2>
+      <h2>Witaj {{ authenticatedEmail }}!</h2>
       <b>
         <p>
           <a href @click="logOut()">Wyloguj</a>
@@ -22,26 +21,25 @@
 
 <script>
 import "milligram";
+import LoginForm from "./LoginForm";
 
 export default {
-  name: 'app',
+  components: {LoginForm},
   data () {
     return {
-      email: 'marcin.micek@gmail.com',
-      isAuthenticated: false
+      authenticatedEmail: ''
     }
   },
   methods: {
-    logIn() {
-      this.isAuthenticated = true;
+    logMeIn(email) {
+      this.authenticatedEmail = email;
     },
     logOut() {
-      this.isAuthenticated = false;
+      this.authenticatedEmail = '';
     }
+    
   }
 }
-
-
 </script>
 
 <style lang="scss">
