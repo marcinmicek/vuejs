@@ -4,16 +4,14 @@
     
     <div v-if="!authenticatedEmail">
       <login-form @login="logMeIn($event)"
-      :button-label="'Wchodzę'"></login-form>
+      :button-label="'Zaloguj się'"></login-form>
     </div>
 
     <div v-else>
-      <h2>Witaj {{ authenticatedEmail }}!</h2>
-      <b>
-        <p>
-          <a href @click="logOut()">Wyloguj</a>
-        </p>
-      </b>
+    	
+      	<h2>Witaj {{ authenticatedEmail }}!</h2>
+	  	<a href @click="logOut()">Wychodzę</a>
+	  	<meeting-page @addMeeting="addNewMeeting($event)"></meeting-page>
     </div>
 
   </div>
@@ -22,9 +20,10 @@
 <script>
 import "milligram";
 import LoginForm from "./LoginForm";
+import MeetingPage from "./MeetingPage";
 
 export default {
-  components: {LoginForm},
+  components: {LoginForm, MeetingPage},
   data () {
     return {
       authenticatedEmail: ''
