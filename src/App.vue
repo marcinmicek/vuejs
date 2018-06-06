@@ -8,9 +8,10 @@
     </div>
 
     <div v-else>
-    	
-      	<h2>Witaj {{ authenticatedEmail }}!</h2>
-	  	<a href @click="logOut()">Wychodzę</a>
+    	<div class="clearfix">
+      		<div class="float-left"><h2>Witaj {{ authenticatedEmail }}!</h2></div>
+	  		<div class="float-right"><button class="button button-outline" @click="logOut()">Wychodzę</button></div>
+		</div>  		
 	  	<meeting-page @addMeeting="addNewMeeting($event)"></meeting-page>
     </div>
 
@@ -35,6 +36,8 @@ export default {
     },
     logOut() {
       this.authenticatedEmail = '';
+    },
+    addNewMeeting(meeting) {
     }
     
   }

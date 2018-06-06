@@ -13,6 +13,9 @@
             </tr>
         </tbody>
     </table>
+    <table v-else>
+        Brak zaplanowanych spotkań.
+    </table>
 </template>
 
 <script>

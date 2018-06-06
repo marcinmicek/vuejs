@@ -1,9 +1,13 @@
 <template>
-    <div>
+    <div v-if="isCreating">
        <h2>Zajęcia</h2>
        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
        <meetings-list :meetings="meetings"></meetings-list>
     </div>
+    <div v-else>
+    	<button @click="showCreatingNewMeeting()">Dodaj nowe spotkanie</button>
+		<meetings-list :meetings="meetings"></meetings-list>
+	</div>
 </template>
 
 <script>
@@ -12,14 +16,20 @@ import MeetingsList from "./MeetingsList";
 
 export default {
   components: {NewMeetingForm, MeetingsList},
+  
   data() {
       return {
-          meetings: []
+          meetings: [],
+          isCreating: false
       };
   },
   methods: {
       addNewMeeting(meeting) {
-          this.meetings.push(meeting);
+      	  this.meetings.push(meeting);
+      	  this.isCreating=false;
+      },
+      showCreatingNewMeeting() {
+      	  this.isCreating = true;
       }
   }
 }
