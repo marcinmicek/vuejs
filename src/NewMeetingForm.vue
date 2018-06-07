@@ -18,7 +18,9 @@
 export default {
   data() {
       return {
-          newMeeting: {},
+          newMeeting: {
+        	participants:[],
+      	  },
           isEmpty: false
       };
   },
@@ -32,5 +34,5 @@ export default {
         }
       }
   }
-}
+};
 </script>
