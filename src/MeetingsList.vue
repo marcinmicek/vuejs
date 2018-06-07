@@ -19,9 +19,9 @@
                     </li>
                 </td>
                 
-                <td class="float-right"><button v-if="meeting.participants.indexOf(email)!==-1" class="button button-outline" @click="disjoin(meeting)">Wypisz się</button></td>
+                <td class="float-right"><button v-if="meeting.participants.indexOf(user)!==-1" class="button button-outline" @click="disjoin(meeting)">Wypisz się</button></td>
                 <td class="float-right"><button v-if="meeting.participants.length==0" class="button" @click="remove(meeting)">Usuń puste spotkanie</button></td>
-                <td class="float-right"><button v-if="meeting.participants.indexOf(email)<0" class="button button-outline" @click="join(meeting)">Zapisz się</button></td>
+                <td class="float-right"><button v-if="meeting.participants.indexOf(user)<0" class="button button-outline" @click="join(meeting)">Zapisz się</button></td>
                 
             </tr>
         </tbody>
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-    props: ['meetings', 'email'],
+    props: ['meetings', 'user'],
     methods:{
       join(meeting){
           this.$emit('join',meeting);

@@ -5,7 +5,7 @@
     </div>
     <div v-else>
        <button @click="showMeetingCreationForm()">Dodaj nowe spotkanie</button>
-	   <meetings-list :meetings="meetings" :email="email" @join="addParticipant($event)" @disjoin="removeParticipant($event)" @remove="deleteMeeting($event)"></meetings-list>
+	   <meetings-list :meetings="meetings" :user="user" @join="addParticipant($event)" @disjoin="removeParticipant($event)" @remove="deleteMeeting($event)"></meetings-list>
 	   
 	</div>
 </template>
@@ -15,7 +15,7 @@ import NewMeetingForm from "./NewMeetingForm";
 import MeetingsList from "./MeetingsList";
 
 export default {
-  props: ['email'],
+  props: ['user'],
   components: {NewMeetingForm, MeetingsList},
   
   data() {
@@ -33,11 +33,11 @@ export default {
       	  this.isCreating = true;
       },
       addParticipant(meeting){
-          meeting.participants.push(this.email);
+          meeting.participants.push(this.user);
       },
       removeParticipant(meeting){ 
       	  let meetingIndex = this.meetings.indexOf(meeting)
-      	  let patricipantIndex= meeting.participants.indexOf(this.email);
+      	  let patricipantIndex= meeting.participants.indexOf(this.user)
       	  meeting.participants.splice(patricipantIndex,1);
       },
       deleteMeeting(meeting){

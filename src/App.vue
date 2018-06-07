@@ -2,17 +2,13 @@
   <div id="app">
     <h1>Witaj w systemie do zapisów na zajęcia</h1>
     
-    <div v-show="!authenticatedEmail">
+    <div v-show="!isLoggedIn">
       <login-form @login="logMeIn($event)"
       :button-label="'Zaloguj się'"></login-form>
     </div>
 
-    <div v-show="authenticatedEmail">
-    	<div class="clearfix">
-      		<div class="float-left"><h2>Witaj {{ authenticatedEmail }}!</h2></div>
-	  		<div class="float-right"><button class="button button-outline" @click="logOut()">Wyloguj</button></div>
-		</div>  		
-	  	<meeting-page @addMeeting="addNewMeeting($event)"></meeting-page>
+    <div v-show="isLoggedIn">
+    	<content-page @logOut="logOut" :user="loggedInUser"> </content-page>
     </div>
 
   </div>
@@ -21,25 +17,26 @@
 <script>
 import "milligram";
 import LoginForm from "./LoginForm";
-import MeetingPage from "./MeetingPage";
+import ContentPage from "./ContentPage";
 
 export default {
-  components: {LoginForm, MeetingPage},
+  components: {LoginForm, ContentPage},
   data () {
     return {
-      authenticatedEmail: ''
+      email: "",
+      isLoggedIn: false,
+      loggedInUser:""
     }
   },
   methods: {
-    logMeIn(email) {
-      this.authenticatedEmail = email;
+    logMeIn(user) {
+      this.isLoggedIn = true;
+      this.loggedInUser = user;
     },
     logOut() {
-      this.authenticatedEmail = '';
-    },
-    addNewMeeting(meeting) {
+      this.isLoggedIn = false;
+      this.loggedInUser = '';
     }
-    
   }
 }
 </script>
