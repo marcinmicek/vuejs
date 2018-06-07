@@ -1,6 +1,5 @@
 <template>
     <div v-if="isCreating">
-       <h2>Zajęcia</h2>
        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
        <meetings-list :meetings="meetings"></meetings-list>
     </div>

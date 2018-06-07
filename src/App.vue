@@ -10,7 +10,7 @@
     <div v-else>
     	<div class="clearfix">
       		<div class="float-left"><h2>Witaj {{ authenticatedEmail }}!</h2></div>
-	  		<div class="float-right"><button class="button button-outline" @click="logOut()">Wychodzę</button></div>
+	  		<div class="float-right"><button class="button button-outline" @click="logOut()">Wyloguj</button></div>
 		</div>  		
 	  	<meeting-page @addMeeting="addNewMeeting($event)"></meeting-page>
     </div>
