@@ -1,12 +1,12 @@
 <template>
     <div v-if="isCreating">
-       <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
-       <meetings-list :meetings="meetings"></meetings-list>
+        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
+		<meetings-list :meetings="meetings"></meetings-list>
     </div>
+       	
     <div v-else>
        <button @click="showMeetingCreationForm()">Dodaj nowe spotkanie</button>
 	   <meetings-list :meetings="meetings" :user="user" @join="addParticipant($event)" @disjoin="removeParticipant($event)" @remove="deleteMeeting($event)"></meetings-list>
-	   
 	</div>
 </template>
 
